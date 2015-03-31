@@ -15,7 +15,6 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <script src="lib/angular-touch/angular-touch.js"></script>
     <script src="lib/angular-carousel.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->

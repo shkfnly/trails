@@ -10,7 +10,7 @@ navigation history that also transitions its views in and out.
     <ion-nav-view name="tab-dash"></ion-nav-view>
   </ion-tab>
 
-  <!-- Trails Tab -->
+  <!-- Chats Tab -->
   <ion-tab title="Trails" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/tab/trails">
     <ion-nav-view name="tab-chats"></ion-nav-view>
   </ion-tab>

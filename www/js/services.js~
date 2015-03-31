@@ -26,8 +26,8 @@ angular.module('starter.services', [])
     },
     get: function(trailId) {
       for (var i = 0; i < trails.length; i++) {
-        if (trails[i].id === parseInt(trailId)) {
-          return trails[i];
+        if (chats[i].id === parseInt(chatId)) {
+          return chats[i];
         }
       }
       return null;

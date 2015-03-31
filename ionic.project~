@@ -1,0 +1,12 @@
+{
+  "name": "trails",
+  "app_id": "640cc028",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
+}

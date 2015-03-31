@@ -36,7 +36,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     templateUrl: "templates/tabs.html"
   })
   .state('trail', {
-    url: "/trail/:trailId",
+    url: "/trail/:trail_id",
     templateUrl: "templates/trail.html",
     controller: "TrailCtrl"
   })

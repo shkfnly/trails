@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-   -->
+   <div id="map"></div>-->
   <ul rn-carousel rn-carousel-index="carouselIndex" rn-carousel-auto-slide rn-carousel-pause-on-hover class="image trail-carou">
     <li ng-repeat="trail in trails track by trail.id" style="z-index: -1 !important;">
        <a ng-href="#/trail/{{trail.id}}">     
