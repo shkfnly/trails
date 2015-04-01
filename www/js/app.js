@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngTouch','angular-carousel'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngTouch','angular-carousel', 'geolocation'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -39,6 +39,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     url: "/trail/:trailId",
     templateUrl: "templates/trail.html",
     controller: "TrailCtrl"
+  })
+  .state('trail.waypoint', {
+    url: '/trail/:trailId/:pointId',
+    templateUrl: 'templates/waypoint.html',
+    controller: 'WaypointCtrl'
   })
 
   // Each tab has its own nav history stack:

@@ -14,6 +14,10 @@ angular.module('starter.services', [])
       lat: 37.785193,
       lon: -122.411565
     }, { 
+      name: 'Tenderloin Neighborhood Development Corporation',
+      lat: 37.784438,
+      lon: -122.409913
+    }
 ]
   }, {
     id: 1,
