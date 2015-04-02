@@ -6,12 +6,12 @@ angular.module('starter.controllers', [])
 
 .controller('TrailCtrl', function($scope, $stateParams, $http, Trails, geolocation) {
   $scope.trail = Trails.get($stateParams.trailId);
-  $scope.addMap = function(){
+  ($scope.addMap = function(){
     var L = window.L;
     L.mapbox.accessToken = 'pk.eyJ1IjoidXJiaW5zaWdodCIsImEiOiJIbG1xUDBBIn0.o2RgJkl1-wCO7yyG7Khlzg'
     $scope.map = L.mapbox.map('map', 'urbinsight.l906cd2j').setView([37.7833, -122.4167], 15);	
-  };
-  $scope.addMap();
+  })();
+  // $scope.addMap();
   
   geolocation.getLocation().then(function(data){
     L.marker([data.coords.latitude, data.coords.longitude], {
@@ -21,18 +21,27 @@ angular.module('starter.controllers', [])
       })
     }).addTo($scope.map)
   })
+
+
   $scope.waypoints = [];
 
   angular.forEach($scope.trail.points, function(point){
     $scope.waypoints.push([point.lon, point.lat])
-    L.marker([point.lat, point.lon], {
+    var popupContent = "<div>I'm custom popup content</div>";
+
+    var marker = L.marker([point.lat, point.lon], {
       icon: L.mapbox.marker.icon({
         'marker-size': 'large',
         'marker-color': '#fa0'
       })
-    }).addTo($scope.map);
+    })
+    marker.addTo($scope.map);
+    marker.bindPopup(popupContent, {
+      closeButton: true, 
+      minWidth: 320
+    })
   });
- $scope.drawRoute = function() {
+ ($scope.drawRoute = function() {
   var requestString = 'http://api.tiles.mapbox.com/v4/directions/mapbox.walking/' + $scope.waypoints.join(';') + '.json?access_token=' + L.mapbox.accessToken
   var request = $http.get(requestString);
   request.success(function(data, status){
@@ -41,10 +50,12 @@ angular.module('starter.controllers', [])
     angular.forEach(data.routes[0].geometry.coordinates, function(lonLat){
       polylinePoints.push([lonLat[1], lonLat[0]])
     })
-    L.polyline(polylinePoints, {color: 'teal', opacity: 1, weight: 10}).addTo($scope.map);
+    var polyline = L.polyline(polylinePoints, {color: 'teal', opacity: 1, weight: 10});
+    polyline.addTo($scope.map);
+    $scope.map.fitBounds(polyline.getBounds());
   })
- };
- $scope.drawRoute();
+ })();
+ // $scope.drawRoute();
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {

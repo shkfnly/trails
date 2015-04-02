@@ -35,10 +35,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     abstract: true,
     templateUrl: "templates/tabs.html"
   })
-  .state('trail', {
-    url: "/trail/:trailId",
-    templateUrl: "templates/trail.html",
-    controller: "TrailCtrl"
+
+    .state('trails', {
+      url: "/trails"
+    }) 
+  // .state('tab.trail', {
+  //   url: "/trail/:trailId",
+  //   templateUrl: "templates/trail.html",
+  //   controller: "TrailCtrl"
+  // })
+  .state('tab.trail', {
+    url: '/trails/:trailId',
+    views: {
+      'tab-trails': {
+        templateUrl: 'templates/trail.html',
+        controller: 'TrailCtrl'
+      }
+    }
   })
   .state('trail.waypoint', {
     url: '/trail/:trailId/:pointId',
