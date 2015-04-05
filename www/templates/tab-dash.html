@@ -3,7 +3,7 @@
 
   <ul rn-carousel rn-carousel-index="carouselIndex" rn-carousel-auto-slide rn-carousel-pause-on-hover class="image trail-carou">
     <li ng-repeat="trail in trails track by trail.id" style="z-index: -1 !important;">
-       <a ng-href="#/tab/trails/{{trail.id}}">     
+       <a ng-href="#/trails/{{trail.id}}">     
 	<ion-list class="list card">
         <ion-item class="item-image carou-image" ng-style="{'background-image': 'url(' + trail.image + ')'}">
         </ion-item>

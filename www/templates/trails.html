@@ -1,0 +1,24 @@
+<ion-tabs class="tabs-icon-top tabs-assertive">
+
+  <!-- Home Tab -->
+  <ion-tab title="Home" icon-off="ion-home" icon-on="ion-home" href="#/tab/dash">
+    <ion-nav-view name="tab-dash"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Map Tab -->
+  <ion-tab title="Map" icon-off="ion-home" icon-on="ion-home" href="#/trails/:trailID">
+    <ion-nav-view name="trails-map"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Trails Tab -->
+  <ion-tab title="Route" icon-off="ion-network" icon-on="ion-network" href="#/trails/:trailId/route">
+    <ion-nav-view name="trails-routes"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Account Tab -->
+  <ion-tab title="Landmarks" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/trails/:trailId/landmarks">
+    <ion-nav-view name="trails-landmark"></ion-nav-view>
+  </ion-tab>
+
+
+</ion-tabs>
