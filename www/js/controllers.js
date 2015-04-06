@@ -3,24 +3,26 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope, Trails) {
   $scope.trails = Trails.all();
 })
-.controller('TrailsCtrl', function($scope, Trails) {
-  $scope.trailId = Trails.getCurrent();
+.controller('TrailsCtrl', function($scope, $stateParams) {
+  $scope.trailId = $stateParams.trailId;
 })
 
 
 .controller('TrailCtrl', function($scope, $stateParams, $http, Trails, geolocation) {
-  $scope.trail = Trails.get($stateParams.trailId);
-  $scope.trailId = $stateParams.trailId;
+  $scope.trail = Trails.get(trailId);
+  $scope.trailId = trailId;
   Trails.setCurrent($scope.trailId);
 // Add basemap to view.
-  ($scope.addMap = function(){
+  $scope.addMap = function(){
     if($scope.map != undefined){
       $scope.map.remove();
     }
     var L = window.L;
     L.mapbox.accessToken = 'pk.eyJ1IjoidXJiaW5zaWdodCIsImEiOiJIbG1xUDBBIn0.o2RgJkl1-wCO7yyG7Khlzg'
     $scope.map = L.mapbox.map('map', 'urbinsight.l906cd2j').setView([37.7833, -122.4167], 15);	
-  })();
+  }
+  console.log($scope.map)
+  $scope.addMap();
 
   
 

@@ -38,21 +38,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   .state('trails', {
     url: "/trails",
-    abstract: true,
     templateUrl: "templates/trails.html",
     controller: 'TrailsCtrl'
-  }) 
-  .state('trails.landmarks', {
-    url: '/:trailId/landmarks',
-    views: {
-      'trails-landmark': {
-        templateUrl: 'templates/landmarks.html',
-        controller: 'LandmarkCtrl'
-      }
-    }
   })
   .state('trails.trail', {
     url: '/:trailId',
+    resolve: {
+      trailId: ['$stateParams', function($stateParams){
+          return $stateParams.trailId
+      }]
+    }
+  }) 
+  .state('trails.trail.map', {
+    url: '/map',
     views: {
       'trails-map': {
         templateUrl: 'templates/trail.html',
@@ -60,6 +58,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     }
   })
+  .state('trails.trail.landmarks', {
+    url: '/landmarks',
+    views: {
+      'trails-landmark': {
+        templateUrl: 'templates/landmarks.html',
+        controller: 'LandmarkCtrl'
+      }
+    }
+  })
+  // .state('trails.trail', {
+  //   url: '/:trailId',
+  //   views: {
+  //     'trails-map': {
+  //       templateUrl: 'templates/trail.html',
+  //       controller: 'TrailCtrl'
+  //     }
+  //   }
+  // })
 
   .state('trail.waypoint', {
     url: '/trail/:trailId/:pointId',
