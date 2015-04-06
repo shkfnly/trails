@@ -39,13 +39,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   .state('trails', {
     url: "/trails",
     abstract: true,
-    templateUrl: "templates/trails.html"
+    templateUrl: "templates/trails.html",
+    controller: 'TrailsCtrl'
   }) 
-  // .state('tab.trail', {
-  //   url: "/trail/:trailId",
-  //   templateUrl: "templates/trail.html",
-  //   controller: "TrailCtrl"
-  // })
+  .state('trails.landmarks', {
+    url: '/:trailId/landmarks',
+    views: {
+      'trails-landmark': {
+        templateUrl: 'templates/landmarks.html',
+        controller: 'LandmarkCtrl'
+      }
+    }
+  })
   .state('trails.trail', {
     url: '/:trailId',
     views: {
@@ -55,6 +60,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     }
   })
+
   .state('trail.waypoint', {
     url: '/trail/:trailId/:pointId',
     templateUrl: 'templates/waypoint.html',
@@ -71,36 +77,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         controller: 'DashCtrl'
       }
     }
-  })
-
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
-
-  .state('tab.account', {
-    url: '/account',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
-      }
-    }
   });
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');

@@ -1,5 +1,6 @@
 angular.module('starter.services', [])
 .factory('Trails', function() {
+  var currentTrail = 0;
   var trails = [{
     id: 0,
     image: 'https://hikinginthesmokies.files.wordpress.com/2012/09/indian-creek-trail-august-07-2012.jpg',
@@ -47,6 +48,13 @@ angular.module('starter.services', [])
         }
       }
       return null;
+    },
+    setCurrent: function(trailId) {
+      currentTrail = trailId;
+    },
+
+    getCurrent: function() {
+      return currentTrail;
     }
   };
 

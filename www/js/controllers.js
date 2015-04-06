@@ -3,16 +3,28 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope, Trails) {
   $scope.trails = Trails.all();
 })
+.controller('TrailsCtrl', function($scope, Trails) {
+  $scope.trailId = Trails.getCurrent();
+})
+
 
 .controller('TrailCtrl', function($scope, $stateParams, $http, Trails, geolocation) {
   $scope.trail = Trails.get($stateParams.trailId);
+  $scope.trailId = $stateParams.trailId;
+  Trails.setCurrent($scope.trailId);
+// Add basemap to view.
   ($scope.addMap = function(){
+    if($scope.map != undefined){
+      $scope.map.remove();
+    }
     var L = window.L;
     L.mapbox.accessToken = 'pk.eyJ1IjoidXJiaW5zaWdodCIsImEiOiJIbG1xUDBBIn0.o2RgJkl1-wCO7yyG7Khlzg'
     $scope.map = L.mapbox.map('map', 'urbinsight.l906cd2j').setView([37.7833, -122.4167], 15);	
   })();
-  // $scope.addMap();
+
   
+
+  //Location pinging for device
   geolocation.getLocation().then(function(data){
     L.marker([data.coords.latitude, data.coords.longitude], {
       icon: L.mapbox.marker.icon({
@@ -25,6 +37,8 @@ angular.module('starter.controllers', [])
 
   $scope.waypoints = [];
 
+
+// Retrieve waypoints from angular services.
   angular.forEach($scope.trail.points, function(point){
     $scope.waypoints.push([point.lon, point.lat])
     var popupContent = "<div>I'm custom popup content</div>";
@@ -41,11 +55,12 @@ angular.module('starter.controllers', [])
       minWidth: 320
     })
   });
+
+ // Retrieves the directions from the Mapbox API and then draws the route.
  ($scope.drawRoute = function() {
   var requestString = 'http://api.tiles.mapbox.com/v4/directions/mapbox.walking/' + $scope.waypoints.join(';') + '.json?access_token=' + L.mapbox.accessToken
   var request = $http.get(requestString);
   request.success(function(data, status){
-    console.log(data);
     var polylinePoints = []
     angular.forEach(data.routes[0].geometry.coordinates, function(lonLat){
       polylinePoints.push([lonLat[1], lonLat[0]])
@@ -55,18 +70,17 @@ angular.module('starter.controllers', [])
     $scope.map.fitBounds(polyline.getBounds());
   })
  })();
- // $scope.drawRoute();
 })
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  }
+.controller('LandmarkCtrl', function($scope, $stateParams, $rootScope, Trails) {
+  console.log($stateParams.trailId)
+  console.log($rootScope.trailID)
+  $scope.landmarks = Trails.get($stateParams.trailId).points;
+
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+
 })
 
 .controller('AccountCtrl', function($scope) {
