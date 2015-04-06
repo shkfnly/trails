@@ -41,7 +41,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     abstract: true,
     templateUrl: "templates/trails.html",
     controller: 'TrailsCtrl'
-  }) 
+  })
   .state('trails.landmarks', {
     url: '/:trailId/landmarks',
     views: {
@@ -65,6 +65,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     url: '/trail/:trailId/:pointId',
     templateUrl: 'templates/waypoint.html',
     controller: 'WaypointCtrl'
+  })
+  .state('trail.compass', {
+    url: '/trail/:trailId/compass',
+    templateUrl: 'templates/compass.html',
+    controller: 'CompassCtrl'
   })
 
   // Each tab has its own nav history stack:

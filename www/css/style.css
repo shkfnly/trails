@@ -25,7 +25,28 @@ a {
 
 .trail-type {
    height: 18vh;
-   
+
    margin: 5px 5px 5px 5px;
-   font-size: 36px;  
+   font-size: 36px;
+}
+
+.compass-background {
+  background: #f0f0f0;
+  position: relative;
+  border-radius: 50%;
+  border: solid #999 2px;
+  /* TODO: make this grow to the view size? */
+  width: 200px;
+  height: 200px;
+}
+.compass-face {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  bottom: 0;
+
+  width: 20px;
+  margin-left: -10px;
+
+  background: #777;ß
 }

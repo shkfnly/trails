@@ -19,10 +19,10 @@ angular.module('starter.controllers', [])
     }
     var L = window.L;
     L.mapbox.accessToken = 'pk.eyJ1IjoidXJiaW5zaWdodCIsImEiOiJIbG1xUDBBIn0.o2RgJkl1-wCO7yyG7Khlzg'
-    $scope.map = L.mapbox.map('map', 'urbinsight.l906cd2j').setView([37.7833, -122.4167], 15);	
+    $scope.map = L.mapbox.map('map', 'urbinsight.l906cd2j').setView([37.7833, -122.4167], 15);
   })();
 
-  
+
 
   //Location pinging for device
   geolocation.getLocation().then(function(data){
@@ -51,7 +51,7 @@ angular.module('starter.controllers', [])
     })
     marker.addTo($scope.map);
     marker.bindPopup(popupContent, {
-      closeButton: true, 
+      closeButton: true,
       minWidth: 320
     })
   });
@@ -76,7 +76,45 @@ angular.module('starter.controllers', [])
   console.log($stateParams.trailId)
   console.log($rootScope.trailID)
   $scope.landmarks = Trails.get($stateParams.trailId).points;
+})
 
+.controller('CompassCtrl', function($scope, $stateParams, $http, Trails, geolocation) {
+  $scope.currentStep = 0
+  $scope.waypoints = Trails.get($stateParams.trailId)
+
+  geolocation.watchPosition(function(position) {
+    $scope.position = position.coords;
+  })
+
+  // TODO: How do we actually get Cordova's compass object in here??
+  compass.watchHeading(function(heading) {
+    $scope.heading = heading.magneticHeading;
+  })
+
+  $scope.currentWaypoint = function() {
+    return $scope.waypoints[$scope.currentStep]
+  }
+
+  $scope.absoluteAngle = function() {
+    var dLon = $scope.currentWaypoint.longitude - $scope.position.longitude
+    var y = Math.sin(dLon) * Math.cos($scope.currentWaypoint.latitude);
+    var x = Math.cos($scope.position.latitude) * Math.sin($scope.currentWaypoint.latitude)
+            - Math.sin($scope.position.latitude) * Math.cos($scope.currentWaypoint.latitude) * Math.cos(dLon);
+    var brng = Math.atan2(y, x);
+    brng = brng * 180 / Math.PI;
+    brng = (brng + 360) % 360;
+    brng = 360 - brng;
+    return brng
+  }
+
+  $scope.angle = function() {
+    // TODO: actually try what equation is needed here. I'm not sure :/
+    return $scope.absoluteAngle - $scope.heading
+  }
+
+  $scope.compassFaceStyle = function() {
+    return "transform: rotate(" + $scope.angle + "deg)";
+  }
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
