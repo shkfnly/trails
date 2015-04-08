@@ -1,5 +1,6 @@
 angular.module('starter.services', [])
 .factory('Trails', function() {
+  var initial = true;
   var currentTrail = 0;
   var trails = [{
     id: 0,
@@ -55,6 +56,14 @@ angular.module('starter.services', [])
 
     getCurrent: function() {
       return currentTrail;
+    },
+
+    firstTime: function() {
+      return initial;
+    },
+
+    initialized: function() {
+      initial = false;
     }
   };
 

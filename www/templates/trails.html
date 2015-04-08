@@ -6,17 +6,17 @@
   </ion-tab>
 
   <!-- Map Tab -->
-  <ion-tab title="Map" icon-off="ion-map" icon-on="ion-map" ng-href="#/trails/{{trailId}}/map">
+  <ion-tab title="Map" icon-off="ion-map" icon-on="ion-map" ui-sref="trails.trail">
     <ion-nav-view name="trails-map"></ion-nav-view>
   </ion-tab>
 
   <!-- Trails Tab -->
-  <ion-tab title="Route" icon-off="ion-network" icon-on="ion-network" ng-href="#/trails/{{trailId}}/route">
-    <ion-nav-view name="trails-routes"></ion-nav-view>
+  <ion-tab title="Route" icon-off="ion-network" icon-on="ion-network" ui-sref="trails.route">
+    <ion-nav-view name="trails-route"></ion-nav-view>
   </ion-tab>
 
   <!-- Account Tab -->
-  <ion-tab title="Landmarks" icon-off="ion-location" icon-on="ion-location" ui-sref="trails.trail.landmarks({trailId: trailId})">
+  <ion-tab title="Landmarks" icon-off="ion-location" icon-on="ion-location" ui-sref="trails.landmarks({trailID: trailID})">
     <ion-nav-view name="trails-landmark"></ion-nav-view>
   </ion-tab>
 
