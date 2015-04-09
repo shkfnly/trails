@@ -33,17 +33,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   .state('tab', {
     url: "/tab",
     abstract: true,
-    templateUrl: "templates/tabs.html"
+    templateUrl: "templates/nav/tabs.html"
   })
   .state('trails', {
     url: "/trails",
-    templateUrl: "templates/trails.html"
+    templateUrl: "templates/trails-nav/trail-tabs.html"
   })
   .state('trails.landmarks', {
     url: '/landmarks',
     views: {
       'trails-landmark': {
-        templateUrl: 'templates/landmarks.html',
+        templateUrl: 'templates/trails-nav/landmarks.html',
         controller: 'LandmarkCtrl'
       }
     }
@@ -52,16 +52,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     url: '/route',
     views: {
       'trails-route': {
-        templateUrl: 'templates/route.html',
+        templateUrl: 'templates/trails-nav/route.html',
         controller: 'RouteCtrl'
       }
     }
   })
-  .state('trails.trail', {
+  .state('trails.map', {
     url: '/:trailID',
     views: {
       'trails-map': {
-        templateUrl: 'templates/trail.html',
+        templateUrl: 'templates/trails-nav/map.html',
         controller: 'TrailCtrl'
       }
     }
@@ -78,14 +78,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     url: '/dash',
     views: {
       'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
+        templateUrl: 'templates/nav/tab-dash.html',
         controller: 'DashCtrl'
       }
     }
   });
-
-
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
-
 });
