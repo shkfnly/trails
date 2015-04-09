@@ -7,14 +7,17 @@ angular.module('starter.services', [])
     name: 'Trail #1',
     desc: 'This is the first trail',
     points: [{
+      id: 0,
       name: 'Tenderloin National Forest',
       lat: 37.784430,
       lon: -122.414966
     }, {
+      id: 1,
       name: 'Glide Graze the Roof',
       lat: 37.785193,
       lon: -122.411565
     }, { 
+      id: 2,
       name: 'Tenderloin Neighborhood Development Corporation',
       lat: 37.784438,
       lon: -122.409913
@@ -26,14 +29,17 @@ angular.module('starter.services', [])
     name: 'Trail #2',
     desc: 'This is the second trail',
     points: [{
+      id: 3,
       name: 'Ashoka',
       lat: 37.784430,
       lon: -122.414966
     }, {
+      id: 4,
       name: 'Nick',
       lat: 37.785193,
       lon: -122.411565
     }, { 
+      id: 5,
       name: 'Nickosha',
       lat: 37.784438,
       lon: -122.409913
