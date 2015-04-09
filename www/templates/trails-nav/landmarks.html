@@ -2,9 +2,10 @@
   <ion-content class="padding">
     <ion-list>
       <ion-item class="item-avatar item-icon-right" ng-repeat="landmark in landmarks">
-      <img ng-src="{{landmark.image}}">
-      <h2>{{landmark.name}}</h2>
-      <p>{{landmark.lat}}, {{landmark.lon}}</p>
+        <img ng-src={{landmark.image}}>
+        <h2>{{landmark.name}}</h2>
+        <p>{{landmark.lat}}, {{landmark.lon}}</p>
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>

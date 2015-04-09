@@ -1,10 +1,11 @@
 <ion-view>
   <ion-content class="padding">
     <ion-list>
-      <ion-item class="item-avatar item-icon-right" ng-repeat="trail in trails">
-      <img ng-src={{trail.image}}>
-      <h2>{{trail.name}}</h2>
-      <p>{{trail.desc}}</p>
+      <ion-item class="item-avatar item-icon-right" ng-repeat="trail in trails" href="#/trails/{{trail.id}}/map">
+        <img ng-src={{trail.image}}/>
+        <h2>{{trail.name}}</h2>
+        <p>{{trail.desc}}</p>
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>
