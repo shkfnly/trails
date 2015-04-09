@@ -71,8 +71,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     }
   })
-  .state('trail.compass', {
-    url: '/trail/:trailId/compass',
+  .state('trails.compass', {
+    url: '/compass',
     templateUrl: 'templates/compass.html',
     controller: 'CompassCtrl'
   })
@@ -84,6 +84,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       'tab-dash': {
         templateUrl: 'templates/nav/tab-dash.html',
         controller: 'DashCtrl'
+      }
+    }
+  })
+  .state('tab.trails', {
+    url: '/trails',
+    views: {
+      'tab-trails': {
+        templateUrl: 'templates/nav/tab-trails.html',
+        controller: 'TrailListCtrl'
       }
     }
   });

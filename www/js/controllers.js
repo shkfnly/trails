@@ -3,7 +3,9 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope, $rootScope, Trails) {
   $scope.trails = Trails.all();
 })
-
+.controller('TrailListCtrl', function($scope, $rootScope, Trails) {
+  $scope.trails = Trails.all();
+})
 .controller('TrailCtrl', function($scope, $stateParams, Trails){
   console.log("In TrailCtrl", $stateParams);
   $scope.trailId = $stateParams.trailID
