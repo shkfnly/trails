@@ -4,12 +4,14 @@ angular.module('starter.controllers', [])
   $scope.trails = Trails.all();
 })
 
-.controller('TrailCtrl', function($scope, $rootScope, $stateParams, $http, Trails, geolocation, leafletData) {
+.controller('TrailCtrl', function($scope, $stateParams, Trails){
+  console.log("In TrailCtrl", $stateParams);
   $scope.trailId = $stateParams.trailID
   $scope.trail = Trails.get($stateParams.trailID);
   Trails.setCurrent($stateParams.trailID);
+})
 
-
+.controller('MapCtrl', function($scope, $rootScope, $stateParams, $http, Trails, geolocation, leafletData) {
   angular.extend($scope, {
     defaults: {
       tileLayer: 'http://api.tiles.mapbox.com/v4/urbinsight.l906cd2j/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidXJiaW5zaWdodCIsImEiOiJIbG1xUDBBIn0.o2RgJkl1-wCO7yyG7Khlzg',
@@ -80,10 +82,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('LandmarkCtrl', function($scope, $stateParams, $rootScope, Trails) {
-  // console.log('Im the current Trail in the LandmarkCtrl');
-  // console.log(Trails.getCurrent());
   $scope.landmarks = Trails.get(Trails.getCurrent()).points;
-  console.log($scope.landmarks);
 })
 
 .controller('RouteCtrl', function($scope, $stateParams, Trails) {

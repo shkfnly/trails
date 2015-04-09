@@ -36,8 +36,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     templateUrl: "templates/nav/tabs.html"
   })
   .state('trails', {
-    url: "/trails",
-    templateUrl: "templates/trails-nav/trail-tabs.html"
+    url: "/trails/:trailID",
+    templateUrl: "templates/trails-nav/trail-tabs.html",
+    controller: 'TrailCtrl'
   })
   .state('trails.landmarks', {
     url: '/landmarks',
@@ -58,11 +59,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
   .state('trails.map', {
-    url: '/:trailID',
+    url: '/map',
     views: {
       'trails-map': {
         templateUrl: 'templates/trails-nav/map.html',
-        controller: 'TrailCtrl'
+        controller: 'MapCtrl'
       }
     }
   })

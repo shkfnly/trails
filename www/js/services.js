@@ -67,7 +67,6 @@ angular.module('starter.services', [])
     },
 
     getCurrent: function() {
-      console.log('Im being ran')
       return currentTrail;
     }
   };
