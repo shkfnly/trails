@@ -71,14 +71,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     }
   })
-  // .state('trail.waypoint', {
-  //   url: '/trail/:trailId/:pointId',
-  //   templateUrl: 'templates/waypoint.html',
-  //   controller: 'WaypointCtrl'
-  // })
+  .state('trail.compass', {
+    url: '/trail/:trailId/compass',
+    templateUrl: 'templates/compass.html',
+    controller: 'CompassCtrl'
+  })
 
   // Each tab has its own nav history stack:
-
   .state('tab.dash', {
     url: '/dash',
     views: {

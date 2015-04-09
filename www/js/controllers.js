@@ -31,7 +31,6 @@ angular.module('starter.controllers', [])
   
   L.mapbox.accessToken = 'pk.eyJ1IjoidXJiaW5zaWdodCIsImEiOiJIbG1xUDBBIn0.o2RgJkl1-wCO7yyG7Khlzg'
 
-
   //Location pinging for device
   leafletData.getMap(mapID).then(function(map) {
     geolocation.getLocation().then(function(data){
@@ -41,7 +40,6 @@ angular.module('starter.controllers', [])
           'marker-color': '#fff'
         })
       }).addTo(map)
-    })
 
     $scope.waypoints = [];
 
@@ -83,6 +81,45 @@ angular.module('starter.controllers', [])
 
 .controller('LandmarkCtrl', function($scope, $stateParams, $rootScope, Trails) {
   $scope.landmarks = Trails.get(Trails.getCurrent()).points;
+})
+
+.controller('CompassCtrl', function($scope, $stateParams, $http, Trails, geolocation) {
+  $scope.currentStep = 0
+  $scope.waypoints = Trails.get($stateParams.trailId)
+
+  geolocation.watchPosition(function(position) {
+    $scope.position = position.coords;
+  })
+
+  // TODO: How do we actually get Cordova's compass object in here??
+  compass.watchHeading(function(heading) {
+    $scope.heading = heading.magneticHeading;
+  })
+
+  $scope.currentWaypoint = function() {
+    return $scope.waypoints[$scope.currentStep]
+  }
+
+  $scope.absoluteAngle = function() {
+    var dLon = $scope.currentWaypoint.longitude - $scope.position.longitude
+    var y = Math.sin(dLon) * Math.cos($scope.currentWaypoint.latitude);
+    var x = Math.cos($scope.position.latitude) * Math.sin($scope.currentWaypoint.latitude)
+            - Math.sin($scope.position.latitude) * Math.cos($scope.currentWaypoint.latitude) * Math.cos(dLon);
+    var brng = Math.atan2(y, x);
+    brng = brng * 180 / Math.PI;
+    brng = (brng + 360) % 360;
+    brng = 360 - brng;
+    return brng
+  }
+
+  $scope.angle = function() {
+    // TODO: actually try what equation is needed here. I'm not sure :/
+    return $scope.absoluteAngle - $scope.heading
+  }
+
+  $scope.compassFaceStyle = function() {
+    return "transform: rotate(" + $scope.angle + "deg)";
+  }
 })
 
 .controller('RouteCtrl', function($scope, $stateParams, Trails) {
