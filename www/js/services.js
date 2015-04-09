@@ -26,7 +26,20 @@ angular.module('starter.services', [])
     image: 'https://az-flagstaff3.civicplus.com/images/pages/N1521/Flagstaff_Urban_Trails_and_Bikeways_Map-Sample2-2011.jpg',
     name: 'Trail #2',
     desc: 'This is the second trail',
-    points: []
+    points: [{
+      name: 'Tenderloin National Forest',
+      lat: 37.784430,
+      lon: -122.414966
+    }, {
+      name: 'Glide Graze the Roof',
+      lat: 37.785193,
+      lon: -122.411565
+    }, { 
+      name: 'Tenderloin Neighborhood Development Corporation',
+      lat: 37.784438,
+      lon: -122.409913
+    }
+]
   }, {
     id: 2,
     image: 'http://www.travelandleisure.com/sites/default/files/styles/image_300x300/public/images/amexpub/0041/6531/201212-ss-urban-running-trails-central-park.jpg?itok=OML0PhBn',
@@ -55,15 +68,8 @@ angular.module('starter.services', [])
     },
 
     getCurrent: function() {
+      console.log('Im being ran')
       return currentTrail;
-    },
-
-    firstTime: function() {
-      return initial;
-    },
-
-    initialized: function() {
-      initial = false;
     }
   };
 

@@ -1,33 +1,14 @@
 angular.module('starter.controllers', [])
-// .directive('mapbox', [
-//   function () {
-//     return {
-//       restrict: 'EA',
-//       replace: true,
-//       scope: {
-//         callback: "="
-//       },
-//       template: '<div></div>',
-//       link: function (scope, element, attributes) {
-//         L.mapbox.accessToken = 'pk.eyJ1IjoidXJiaW5zaWdodCIsImEiOiJIbG1xUDBBIn0.o2RgJkl1-wCO7yyG7Khlzg'
-//         var map = L.mapbox.map(element[0], 'urbinsight.l906cd2j');
-//         scope.callback(map);
-//       }
-//     };
-//   }
-//   ])
+
 .controller('DashCtrl', function($scope, $rootScope, Trails) {
   $scope.trails = Trails.all();
 })
-.controller('TrailsCtrl', function($scope, $rootScope, $stateParams) {
-  
-})
-
 
 .controller('TrailCtrl', function($scope, $rootScope, $stateParams, $http, Trails, geolocation, leafletData) {
   $scope.trailId = $stateParams.trailID
   $scope.trail = Trails.get($stateParams.trailID);
   Trails.setCurrent($stateParams.trailID);
+  console.log(Trails.getCurrent())
   angular.extend($scope, {
     defaults: {
       tileLayer: 'http://api.tiles.mapbox.com/v4/urbinsight.l906cd2j/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidXJiaW5zaWdodCIsImEiOiJIbG1xUDBBIn0.o2RgJkl1-wCO7yyG7Khlzg',
@@ -101,6 +82,12 @@ angular.module('starter.controllers', [])
   console.log('Im the current Trail in the LandmarkCtrl');
   console.log(Trails.getCurrent());
   $scope.landmarks = Trails.get(Trails.getCurrent()).points;
+  console.log($scope.landmarks);
+})
+.directive('myLandmarks', function(Trails) {
+  return {
+    template: 'Name: {{landmarks[0].name}}'
+  }
 })
 
 .controller('RouteCtrl', function($scope, $stateParams, Trails) {
