@@ -71,8 +71,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     }
   })
-  .state('trails.compass', {
-    url: '/compass',
+
+  .state('trail.compass', {
+    url: '/trail/:trailId/compass',
     templateUrl: 'templates/compass.html',
     controller: 'CompassCtrl'
   })

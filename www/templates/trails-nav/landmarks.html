@@ -1,11 +1,19 @@
 <ion-view>
   <ion-content class="padding">
-    <ion-list>
-      <ion-item class="item-avatar item-icon-right" ng-repeat="landmark in landmarks">
-        <img ng-src={{landmark.image}}>
+    <ion-list ng-if="!cardOpen">
+      <ion-item class="item-avatar item-icon-right" ng-repeat="landmark in landmarks" ng-click="showCard(landmark.id)">
+        <img ng-src="{{landmark.image}}">
         <h2>{{landmark.name}}</h2>
         <p>{{landmark.lat}}, {{landmark.lon}}</p>
-      </ion-item>
+	    </ion-item>
     </ion-list>
+    <div ng-if="cardOpen && landmark.id === cardId" ng-repeat="landmark in landmarks">
+	  <h2>{{landmark.name}}</h2>
+	  <img ng-src="{{landmark.image}}">
+      <p>A little something about this waypoint : )</p>
+      <button class="button button-block button-stable" ng-click="closeCard()">
+  		  Return to Landmarks
+	    </button>
+    </div>
   </ion-content>
 </ion-view>
