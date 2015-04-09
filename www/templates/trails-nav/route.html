@@ -1,5 +1,9 @@
 <ion-view>
-  <ion-content>
-    You're on the route view
+  <ion-content class="padding">
+    <ion-list>
+      <ion-item class="item-avatar item-icon-right" ng-repeat="step in steps">
+        <h2>{{step.maneuver.instruction}}</h2>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>

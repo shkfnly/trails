@@ -25,12 +25,19 @@ angular.module('starter.controllers', [])
     }
   });
   
-  var mapID = 'map' + $stateParams.trailID
+  var mapID = 'map' + $stateParams.trailID;
+  var L = window.L;
+  L.mapbox.accessToken = 'pk.eyJ1IjoidXJiaW5zaWdodCIsImEiOiJIbG1xUDBBIn0.o2RgJkl1-wCO7yyG7Khlzg';
 
-  var L = window.L
-  
-  L.mapbox.accessToken = 'pk.eyJ1IjoidXJiaW5zaWdodCIsImEiOiJIbG1xUDBBIn0.o2RgJkl1-wCO7yyG7Khlzg'
-
+  $scope.drawPolylineRoute = function(data, map){
+    var polylinePoints = []
+    angular.forEach(data.routes[0].geometry.coordinates, function(lonLat){
+      polylinePoints.push([lonLat[1], lonLat[0]])
+    });
+    var polyline = L.polyline(polylinePoints, {color: 'teal', opacity: 1, weight: 10});
+    polyline.addTo(map);
+    map.fitBounds(polyline.getBounds());
+  }
   //Location pinging for device
   leafletData.getMap(mapID).then(function(map) {
     geolocation.getLocation().then(function(data){
@@ -40,43 +47,52 @@ angular.module('starter.controllers', [])
           'marker-color': '#fff'
         })
       }).addTo(map)
+    })
 
     $scope.waypoints = [];
 
     // Retrieve waypoints from angular services.
-      angular.forEach($scope.trail.points, function(point){
-        $scope.waypoints.push([point.lon, point.lat])
-        var popupContent = "<div>I'm custom popup content</div>";
+    angular.forEach($scope.trail.points, function(point){
+      $scope.waypoints.push([point.lon, point.lat])
+      var popupContent = "<div>I'm custom popup content</div>";
 
-        var marker = L.marker([point.lat, point.lon], {
-          icon: L.mapbox.marker.icon({
-            'marker-size': 'large',
-            'marker-color': '#fa0'
-          })
-        });
-        marker.addTo(map);
-        marker.bindPopup(popupContent, {
-          closeButton: true, 
-          minWidth: 320
-        });
-      }); 
+      var marker = L.marker([point.lat, point.lon], {
+        icon: L.mapbox.marker.icon({
+          'marker-size': 'large',
+          'marker-color': '#fa0'
+        })
+      });
+      marker.addTo(map);
+      marker.bindPopup(popupContent, {
+        closeButton: true, 
+        minWidth: 320
+      });
+    }); 
+
+
 
 
     // Retrieves the directions from the Mapbox API and then draws the route.
     ($scope.drawRoute = function() {
      var requestString = 'http://api.tiles.mapbox.com/v4/directions/mapbox.walking/' + $scope.waypoints.join(';') + '.json?access_token=' + L.mapbox.accessToken
-     var request = $http.get(requestString);
-     request.success(function(data, status){
-       var polylinePoints = []
-       angular.forEach(data.routes[0].geometry.coordinates, function(lonLat){
-         polylinePoints.push([lonLat[1], lonLat[0]])
-       });
-       var polyline = L.polyline(polylinePoints, {color: 'teal', opacity: 1, weight: 10});
-       polyline.addTo(map);
-       map.fitBounds(polyline.getBounds());
-     })
+     console.log(typeof($scope.trail.directions))
+     if( typeof($scope.trail.directions) == 'undefined' ){
+      var request = $http.get(requestString);
+      request.success(function(data, status){
+        Trails.setDirections(data);
+        $scope.drawPolylineRoute(data, map);
+      })
+     } 
+     else {
+        $scope.drawPolylineRoute($scope.trail.directions, map);
+     }
     })();
   });
+})
+
+.controller('RouteCtrl', function($scope, $stateParams, Trails) {
+  console.log($scope.steps = $scope.trail.directions.routes[0].steps)
+
 })
 
 .controller('LandmarkCtrl', function($scope, $stateParams, $rootScope, Trails) {
@@ -120,9 +136,6 @@ angular.module('starter.controllers', [])
   $scope.compassFaceStyle = function() {
     return "transform: rotate(" + $scope.angle + "deg)";
   }
-})
-
-.controller('RouteCtrl', function($scope, $stateParams, Trails) {
 })
 
 .controller('AccountCtrl', function($scope) {

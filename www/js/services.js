@@ -74,6 +74,9 @@ angular.module('starter.services', [])
 
     getCurrent: function() {
       return currentTrail;
+    },
+    setDirections: function(obj){
+      this.get(this.getCurrent()).directions = obj;
     }
   };
 })
