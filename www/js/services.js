@@ -7,7 +7,7 @@ angular.module('starter.services', [])
     name: 'Trail #1',
     desc: 'This is the first trail',
     points: [{
-      id: 0,
+      id: 0, 
       name: 'Tenderloin National Forest',
       lat: 37.784430,
       lon: -122.414966

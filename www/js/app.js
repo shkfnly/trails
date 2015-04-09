@@ -71,6 +71,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     }
   })
+
   .state('trail.compass', {
     url: '/trail/:trailId/compass',
     templateUrl: 'templates/compass.html',

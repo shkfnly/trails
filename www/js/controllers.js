@@ -5,7 +5,6 @@ angular.module('starter.controllers', [])
 })
 
 .controller('TrailCtrl', function($scope, $stateParams, Trails){
-  console.log("In TrailCtrl", $stateParams);
   $scope.trailId = $stateParams.trailID
   $scope.trail = Trails.get($stateParams.trailID);
   Trails.setCurrent($stateParams.trailID);
@@ -38,6 +37,7 @@ angular.module('starter.controllers', [])
     polyline.addTo(map);
     map.fitBounds(polyline.getBounds());
   }
+
   //Location pinging for device
   leafletData.getMap(mapID).then(function(map) {
     geolocation.getLocation().then(function(data){
@@ -52,6 +52,7 @@ angular.module('starter.controllers', [])
     $scope.waypoints = [];
 
     // Retrieve waypoints from angular services.
+<<<<<<< HEAD
     angular.forEach($scope.trail.points, function(point){
       $scope.waypoints.push([point.lon, point.lat])
       var popupContent = "<div>I'm custom popup content</div>";
@@ -70,6 +71,30 @@ angular.module('starter.controllers', [])
     }); 
 
 
+=======
+      angular.forEach($scope.trail.points, function(point){
+        $scope.waypoints.push([point.lon, point.lat])
+        var popupContent =  function(){
+          return [
+           '<h2>' + point.name + '</h2>',
+            '<img ng-src="' + point.image + '">',
+            '<p>Landmark Description</p>'
+          ].join("");
+        };
+
+        var marker = L.marker([point.lat, point.lon], {
+          icon: L.mapbox.marker.icon({
+            'marker-size': 'large',
+            'marker-color': '#fa0'
+          })
+        });
+        marker.addTo(map);
+        marker.bindPopup(popupContent(), {
+          closeButton: true,
+          minWidth: 320
+        }).addTo(map);
+      }); 
+>>>>>>> Added waypoint popups to landmarks and map view.
 
 
     // Retrieves the directions from the Mapbox API and then draws the route.
@@ -97,6 +122,16 @@ angular.module('starter.controllers', [])
 
 .controller('LandmarkCtrl', function($scope, $stateParams, $rootScope, Trails) {
   $scope.landmarks = Trails.get(Trails.getCurrent()).points;
+  $scope.cardOpen = false;
+  $scope.cardId = false;
+  $scope.showCard = function(id) {
+    $scope.cardOpen = true;
+    $scope.cardId = id;
+  };
+  $scope.closeCard = function() {
+    $scope.cardOpen = false;
+    $scope.cardId = false;
+  }
 })
 
 .controller('CompassCtrl', function($scope, $stateParams, $http, Trails, geolocation) {
