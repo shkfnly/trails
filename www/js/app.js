@@ -37,11 +37,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   })
   .state('trails', {
     url: "/trails/:trailID",
+    cache: false,
     templateUrl: "templates/trails-nav/trail-tabs.html",
     controller: 'TrailCtrl'
   })
   .state('trails.landmarks', {
     url: '/landmarks',
+    cache: false,
     views: {
       'trails-landmark': {
         templateUrl: 'templates/trails-nav/landmarks.html',
@@ -51,6 +53,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   })
   .state('trails.route', {
     url: '/route',
+    cache: false,
     views: {
       'trails-route': {
         templateUrl: 'templates/trails-nav/route.html',
@@ -60,6 +63,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   })
   .state('trails.map', {
     url: '/map',
+    cache: false,
     views: {
       'trails-map': {
         templateUrl: 'templates/trails-nav/map.html',
