@@ -24,7 +24,7 @@ angular.module('starter.controllers', [])
 .controller('MapCtrl', function($scope, $rootScope, $stateParams, $http, Trails, geolocation, leafletData) {
   angular.extend($scope, {
     defaults: {
-      tileLayer: 'http://api.tiles.mapbox.com/v4/urbinsight.l906cd2j/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidXJiaW5zaWdodCIsImEiOiJIbG1xUDBBIn0.o2RgJkl1-wCO7yyG7Khlzg',
+      tileLayer: 'https://api.tiles.mapbox.com/v4/urbinsight.l906cd2j/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidXJiaW5zaWdodCIsImEiOiJIbG1xUDBBIn0.o2RgJkl1-wCO7yyG7Khlzg',
       maxZoom: 18,
       scrollWheelZoom: true
     },

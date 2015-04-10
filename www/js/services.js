@@ -144,7 +144,7 @@ angular.module('starter.services', [])
 
     fetchDirections: function(accessToken, map, callback){
       var that = this;
-      var requestString = 'http://api.tiles.mapbox.com/v4/directions/mapbox.walking/' + this.getLandmarks().join(';') + '.json?access_token=' + accessToken
+      var requestString = 'https://api.tiles.mapbox.com/v4/directions/mapbox.walking/' + this.getLandmarks().join(';') + '.json?access_token=' + accessToken
       var request = $http.get(requestString);
       request.success(function(data, status){
         that.setDirections(data);
