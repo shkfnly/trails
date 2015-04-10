@@ -1,0 +1,7 @@
+{
+  "name": "Trailhead",
+  "description": "An urban trailmap for SF",
+  "repository": "https://github.com/shkfnly/trails/",
+  "logo": "http://ionicframework.com/img/ionic-logo-blog.png",
+  "keywords": ["ionic", "static"]
+}
