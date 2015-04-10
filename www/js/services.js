@@ -8,12 +8,12 @@ angular.module('starter.services', [])
     desc: 'A trail of different green infrastructure projects and art installations.',
     type: 'environment',
     points: [{
-      id: 0, 
-      name: 'Tenderloin National Forest',
-      lat: 37.784430,
-      lon: -122.414966,
-      desc: 'Since 1989, lead artists Darryl Smith and Laurie Lazer, of the Luggage Store Gallery, have worked to transform Cohen Alley into a vibrant community commons where people of all ages gather for art performances, classes and activities.',
-      img: 'https://file.ac/rNct7AI-brQ/tnf.jpg'
+      id: 5,
+      name: 'The Luggage Store Gallery',
+      lat: 37.782008,
+      lon: -122.4103,
+      desc: 'Art Galley and Exhibition Space',
+      img: 'https://file.ac/QTBQAjWVTyc/the_luggage_store.jpg'
     }, {
       id: 1,
       name: 'Glide Graze the Roof',
@@ -22,12 +22,12 @@ angular.module('starter.services', [])
       desc: 'This edible roof-top garden uses light-weight garden beds, a worm composting system, beehives, and an educational mural to produce food and act as a community resource. Volunteers maintain the garden and host monthly workshops and tours',
       img: 'https://file.ac/H0TThYy333s/graze_the_roof.jpg'
     }, {
-      id: 3,
-      name: 'Tutubi Plaza',
-      lat: 37.779583,
-      lon: -122.409136,
-      desc: 'Tutubi Plaza offers a break from the stimulus filled nearby Market and Mission Streets. It features a street mural and seating.',
-      img: 'https://file.ac/nVUkMxZR1XA/tutubi_plaza.jpg'
+      id: 0, 
+      name: 'Tenderloin National Forest',
+      lat: 37.784430,
+      lon: -122.414966,
+      desc: 'Since 1989, lead artists Darryl Smith and Laurie Lazer, of the Luggage Store Gallery, have worked to transform Cohen Alley into a vibrant community commons where people of all ages gather for art performances, classes and activities.',
+      img: 'https://file.ac/rNct7AI-brQ/tnf.jpg'
     }, {
       id: 4,
       name: 'True Compassion',
@@ -36,13 +36,13 @@ angular.module('starter.services', [])
       desc:  'True Compassion is a living mural & video project facilitated by Evan Bissell with Larkin Street Youth Services. During a 12 week period, a rotating group of 40 youth created sculptures, stencils, drawings and paintings. They interviewed each other and walked the Tenderloin, examining different meanings of compassion, portraiture & symbolism.',
       img: 'https://file.ac/S0qfpo-aTA0/true_compassion.jpg'
     }, {
-      id: 5,
-      name: 'The Luggage Store Gallery',
-      lat: 37.782008,
-      lon: -122.4103,
-      desc: 'Art Galley and Exhibition Space',
-      img: 'https://file.ac/QTBQAjWVTyc/the_luggage_store.jpg'
-    }, {
+      id: 3,
+      name: 'Tutubi Plaza',
+      lat: 37.779583,
+      lon: -122.409136,
+      desc: 'Tutubi Plaza offers a break from the stimulus filled nearby Market and Mission Streets. It features a street mural and seating.',
+      img: 'https://file.ac/nVUkMxZR1XA/tutubi_plaza.jpg'
+    },   {
       id: 6,
       name: 'The 5Ws @ 5M',
       lat: 37.782075,
