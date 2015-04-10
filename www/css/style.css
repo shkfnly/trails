@@ -14,7 +14,10 @@ a {
 }
 
 .carou-image {
-   height: 38vh;
+   height: 32vh !important;
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
 }
 
 .bgimage {
@@ -24,10 +27,9 @@ a {
 }
 
 .trail-type {
-   height: 18vh;
-
+   height: 15vh;
    margin: 5px 5px 5px 5px;
-   font-size: 36px;
+   font-size: 24px;
 }
 
 .compass-background {

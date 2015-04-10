@@ -17,13 +17,13 @@
     <div rn-carousel-indicators ng-if="trails.length > 1" slides="trails" rn-carousel-index="carouselIndex" style="margin: 10px auto; text-align: center; z-index: 100;"></div>
 
     <div class="row">
-      <button class="button button-positive col trail-type">Environment</button>
-      <button class="button button-calm col trail-type">Art</button>
+      <button class="button button-positive col trail-type" ng-click="go('/tab/trails/environment')">Environment</button>
+      <button class="button button-calm col trail-type" ng-click="go('/tab/trails/art')">Art</button>
     </div>
     
     <div class="row">
-      <button class="button button-balanced col trail-type">Historic</button>
-      <button class="button button-energized col trail-type" style="background-color:#ffc900">Civic</button>
+      <button class="button button-balanced col trail-type" disabled="true">Historic</button>
+      <button class="button button-energized col trail-type" disabled="true">Civic</button>
     </div>
   </ion-content>
 </ion-view>

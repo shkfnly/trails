@@ -89,7 +89,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
   .state('tab.trails', {
-    url: '/trails',
+    url: '/trails/:trailFilter',
     views: {
       'tab-trails': {
         templateUrl: 'templates/nav/tab-trails.html',

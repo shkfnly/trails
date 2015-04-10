@@ -1,15 +1,24 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, $rootScope, Trails) {
+.controller('DashCtrl', function($scope, $rootScope, $location, Trails) {
   $scope.trails = Trails.all();
+  $scope.go = function ( path ) {
+    $location.path( path );
+  };
 })
-.controller('TrailListCtrl', function($scope, $rootScope, Trails) {
-  $scope.trails = Trails.all();
+.controller('TrailListCtrl', function($scope, $rootScope, $stateParams, Trails) {
+  if($stateParams.trailFilter){
+    $scope.trails = Trails.filtered($stateParams.trailFilter)
+  } else {
+    $scope.trails = Trails.all();
+  }
 })
 .controller('TrailCtrl', function($scope, $stateParams, Trails){
   $scope.trailId = $stateParams.trailID
   $scope.trail = Trails.get($stateParams.trailID);
   Trails.setCurrent($stateParams.trailID);
+  var L = window.L;
+  L.mapbox.accessToken = 'pk.eyJ1IjoidXJiaW5zaWdodCIsImEiOiJIbG1xUDBBIn0.o2RgJkl1-wCO7yyG7Khlzg';
 })
 
 .controller('MapCtrl', function($scope, $rootScope, $stateParams, $http, Trails, geolocation, leafletData) {
@@ -17,7 +26,7 @@ angular.module('starter.controllers', [])
     defaults: {
       tileLayer: 'http://api.tiles.mapbox.com/v4/urbinsight.l906cd2j/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidXJiaW5zaWdodCIsImEiOiJIbG1xUDBBIn0.o2RgJkl1-wCO7yyG7Khlzg',
       maxZoom: 18,
-      scrollWheelZoom: false
+      scrollWheelZoom: true
     },
     center: {
       lat: 37.7833,
@@ -27,8 +36,6 @@ angular.module('starter.controllers', [])
   });
   
   var mapID = 'map' + $stateParams.trailID;
-  var L = window.L;
-  L.mapbox.accessToken = 'pk.eyJ1IjoidXJiaW5zaWdodCIsImEiOiJIbG1xUDBBIn0.o2RgJkl1-wCO7yyG7Khlzg';
 
   $scope.drawPolylineRoute = function(data, map){
     var polylinePoints = []
@@ -51,53 +58,40 @@ angular.module('starter.controllers', [])
       }).addTo(map)
     })
 
-    $scope.waypoints = [];
-
     // Retrieve waypoints from angular services.
+      var markerHolder = {};
       angular.forEach($scope.trail.points, function(point){
-        $scope.waypoints.push([point.lon, point.lat])
-        var popupContent =  function(){
-          return [
-           '<h2>' + point.name + '</h2>',
-            '<img ng-src="' + point.image + '">',
-            '<p>Landmark Description</p>'
-          ].join("");
-        };
-
-        var marker = L.marker([point.lat, point.lon], {
-          icon: L.mapbox.marker.icon({
-            'marker-size': 'large',
-            'marker-color': '#fa0'
-          })
-        });
-        marker.addTo(map);
-        marker.bindPopup(popupContent(), {
-          closeButton: true,
-          minWidth: 320
-        }).addTo(map);
-      }); 
+        markerHolder[point.name] = {
+          lat: point.lat,
+          lng: point.lon,
+          message: [
+           '<h2 style="width: 100%; text-align: center;">' + point.name + '</h2>',
+            '<img style="width: 250px; display: block; margin: 0 auto;" src="' + point.img + '">',
+            '<p>' + point.desc + '</p>'
+          ].join(""),
+          focus: false,
+          draggable: false
+        }
+      });
+      angular.extend($scope, {
+        markers: markerHolder
+      });
 
     // Retrieves the directions from the Mapbox API and then draws the route.
-    ($scope.drawRoute = function() {
-     var requestString = 'http://api.tiles.mapbox.com/v4/directions/mapbox.walking/' + $scope.waypoints.join(';') + '.json?access_token=' + L.mapbox.accessToken
-     console.log(typeof($scope.trail.directions))
-     if( typeof($scope.trail.directions) == 'undefined' ){
-      var request = $http.get(requestString);
-      request.success(function(data, status){
-        Trails.setDirections(data);
-        $scope.drawPolylineRoute(data, map);
-      })
-     } 
-     else {
-        $scope.drawPolylineRoute($scope.trail.directions, map);
-     }
-    })();
+    ($scope.drawRoute = function(map) {
+      Trails.metaDirections(L.mapbox.accessToken, map, $scope.drawPolylineRoute);
+    })(map);
   });
 })
 
 .controller('RouteCtrl', function($scope, $stateParams, Trails) {
-  console.log($scope.steps = $scope.trail.directions.routes[0].steps)
-
+  Trails.metaDirections(L.mapbox.accessToken, {}, function(data){
+    var holder = data.routes[0].steps;
+    angular.forEach(holder, function(step){
+      step.maneuver.type = step.maneuver.type.replace(/\s+/g, '-').toLowerCase()
+    });
+    $scope.steps = holder
+  });
 })
 
 .controller('LandmarkCtrl', function($scope, $stateParams, $rootScope, Trails) {
