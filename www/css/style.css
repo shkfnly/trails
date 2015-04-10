@@ -1,5 +1,7 @@
 /* Empty. Add your own CSS if you like */
-
+.title {
+  font-family: 'Pacifico', cursive;
+}
 .map {
     height: 100vh;
 }

@@ -17,5 +17,9 @@
   "cordovaPlugins": [
     "org.apache.cordova.device-orientation",
     "org.apache.cordova.geolocation"
+  ],
+  "cordovaPlatforms": [
+    "ios",
+    "android"
   ]
 }
