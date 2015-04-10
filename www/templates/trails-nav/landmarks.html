@@ -9,7 +9,7 @@
     </ion-list>
     <div ng-if="cardOpen && landmark.id === cardId" ng-repeat="landmark in landmarks" style="height: 80vh;">
 	  <h2 style="text-align: center;" >{{landmark.name}}</h2>
-	  <img style="display: block; margin: 0 auto;" ng-src="{{landmark.img}}">
+	  <img style="width: 100%; display: block; margin: 0 auto;" ng-src="{{landmark.img}}">
     <p style="margin-top: 15px;">{{landmark.desc}}</p>
     <p style="margin-bottom: 15px;">{{landmark.year}}</p>
       <button class="button button-block button-stable" ng-click="closeCard()">
