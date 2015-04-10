@@ -10,6 +10,10 @@ a {
     text-decoration: none;
 }
 
+body > ion-nav-view > ion-tabs:nth-child(2) > ion-nav-view:nth-child(3) > ion-view > ion-content > div.scroll > ion-list > div > ion-item {
+  padding-left: 24px;
+}
+
 .trail-carou {
     height: 45vh;
     background-color: #F8F8F8;
