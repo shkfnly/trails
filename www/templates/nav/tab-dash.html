@@ -15,15 +15,16 @@
       </li>
     </ul>
     <div rn-carousel-indicators ng-if="trails.length > 1" slides="trails" rn-carousel-index="carouselIndex" style="margin: 10px auto; text-align: center; z-index: 100;"></div>
-
-    <div class="row">
-      <button class="button button-positive col trail-type" ng-click="go('/tab/trails/environment')">Environment</button>
-      <button class="button button-calm col trail-type" ng-click="go('/tab/trails/art')">Art</button>
-    </div>
-    
-    <div class="row">
-      <button class="button button-balanced col trail-type" disabled="true">Historic</button>
-      <button class="button button-energized col trail-type" disabled="true">Civic</button>
+    <div style="margin-top: -20px;">
+      <div class="row">
+        <button class="button button-positive col trail-type" ng-click="go('/tab/trails/environment')">Environment</button>
+        <button class="button button-calm col trail-type" ng-click="go('/tab/trails/art')">Art</button>
+      </div>
+      
+      <div class="row">
+        <button class="button button-balanced col trail-type" disabled="true">Historic</button>
+        <button class="button button-energized col trail-type" disabled="true">Civic</button>
+      </div>
     </div>
   </ion-content>
 </ion-view>
