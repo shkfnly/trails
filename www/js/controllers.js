@@ -26,7 +26,8 @@ angular.module('starter.controllers', [])
     defaults: {
       tileLayer: 'https://api.tiles.mapbox.com/v4/urbinsight.l906cd2j/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidXJiaW5zaWdodCIsImEiOiJIbG1xUDBBIn0.o2RgJkl1-wCO7yyG7Khlzg',
       maxZoom: 18,
-      scrollWheelZoom: true
+      scrollWheelZoom: true,
+      panControl: true
     },
     center: {
       lat: 37.7833,
@@ -44,7 +45,8 @@ angular.module('starter.controllers', [])
     });
     var polyline = L.polyline(polylinePoints, {color: 'teal', opacity: 1, weight: 10});
     polyline.addTo(map);
-    map.fitBounds(polyline.getBounds());
+    map.panInsideBounds(polyline.getBounds());
+    map.dragging.enable();
   }
 
   //Location pinging for device
