@@ -1,0 +1,14 @@
+{
+    "org.apache.cordova.device-orientation": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.device-orientation"
+        }
+    },
+    "org.apache.cordova.geolocation": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.geolocation"
+        }
+    }
+}

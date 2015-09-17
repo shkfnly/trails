@@ -1,0 +1,56 @@
+/* Empty. Add your own CSS if you like */
+.title {
+  font-family: 'Pacifico', cursive;
+}
+.map {
+    height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+.trail-carou {
+    height: 45vh;
+    background-color: #F8F8F8;
+}
+
+.carou-image {
+   height: 32vh !important;
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
+}
+
+.bgimage {
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center center;
+}
+
+.trail-type {
+   height: 15vh;
+   margin: 5px 5px 5px 5px;
+   font-size: 24px;
+}
+
+.compass-background {
+  background: #f0f0f0;
+  position: relative;
+  border-radius: 50%;
+  border: solid #999 2px;
+  /* TODO: make this grow to the view size? */
+  width: 200px;
+  height: 200px;
+}
+.compass-face {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  bottom: 0;
+
+  width: 20px;
+  margin-left: -10px;
+
+  background: #777;ß
+}

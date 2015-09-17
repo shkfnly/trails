@@ -1,0 +1,9 @@
+<ion-view>
+  <ion-content class="padding">
+    <ion-list>
+      <ion-item class="item-avatar item-icon-right" ng-repeat="step in steps">
+        <h2><span class="mapbox-directions-icon mapbox-{{step.maneuver.type}}-icon"></span>  {{step.maneuver.instruction}}</h2>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
