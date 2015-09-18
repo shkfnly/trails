@@ -3,7 +3,7 @@ angular.module('starter.services', [])
   var currentTrail = 0;
   var trails = [{
     id: 0,
-    image: 'https://file.ac/prLxFbb06Fo/national_forest.png',
+    image: 'img/national_forest.jpg',
     name: 'Tenderloin National Forest Trailhead',
     desc: 'A trail of different green infrastructure projects and art installations.',
     type: 'environment',
